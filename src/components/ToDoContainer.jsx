@@ -3,6 +3,7 @@ import Clear from "./Clear";
 import Heading from "./Heading";
 import ToForm from "./ToForm";
 import ToList from "./ToList";
+import { v4 as uuidv4 } from "uuid";
 
 const ToDoContainer = () => {
   const [data, setData] = useState([]);
@@ -13,11 +14,14 @@ const ToDoContainer = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setData([...data, userInput]);
-    setUserInput(``);
+    let content = userInput;
+    let id = uuidv4();
+    setData([...data, { id, content }]);
+    setUserInput("");
+    console.log(data);
   };
-  const handleDelete = (name) => {
-    let arr = data.filter((x) => x.toLowerCase().trim() !== name);
+  const handleDelete = (id) => {
+    let arr = data.filter((x) => x.id !== id);
     setData(arr);
   };
 

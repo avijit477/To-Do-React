@@ -20,9 +20,6 @@ const ToDoContainer = () => {
     let arr = data.filter((x) => x.toLowerCase().trim() !== name);
     setData(arr);
   };
-  const handleEdit = (name) => {
-    setUserInput(name);
-  };
 
   return (
     <Fragment>
@@ -32,7 +29,7 @@ const ToDoContainer = () => {
         handleSubmit={handleSubmit}
         userInput={userInput}
       />
-      <ToList data={data} handleDelete={handleDelete} handleEdit={handleEdit} />
+      <ToList data={data} handleDelete={handleDelete} />
       <Clear />
     </Fragment>
   );

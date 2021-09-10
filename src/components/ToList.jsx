@@ -6,7 +6,14 @@ const ToList = (props) => {
   return (
     <Fragment>
       {props.data.map((x) => {
-        return <ListItem x={x} key={x.id} handleDelete={props.handleDelete} />;
+        return (
+          <ListItem
+            x={x}
+            key={x.id}
+            handleDelete={props.handleDelete}
+            handleEdit={props.handleEdit}
+          />
+        );
       })}
     </Fragment>
   );

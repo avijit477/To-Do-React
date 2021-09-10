@@ -4,11 +4,11 @@ import { FiEdit, FiDelete } from "react-icons/fi";
 const ListItem = ({ x, handleDelete }) => {
   return (
     <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-      <div>{x}</div>
+      <div>{x.content}</div>
       <span>
         <FiEdit />
       </span>
-      <span onClick={() => handleDelete(x.toLowerCase().trim())}>
+      <span onClick={() => handleDelete(x.id)}>
         <FiDelete />
       </span>
     </div>

@@ -15,15 +15,19 @@ const ToDoContainer = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!replaceId.length) {
-      let content = userInput;
-      let id = uuidv4();
-      setData([...data, { id, content }]);
+    if (!userInput.length) {
+      alert("Cannot accept empty To-Do");
     } else {
-      let idx = data.findIndex((i) => i.id === replaceId);
-      let arr = [...data];
-      arr.splice(idx, 1, { id: replaceId, content: userInput });
-      setData(arr);
+      if (!replaceId.length) {
+        let content = userInput;
+        let id = uuidv4();
+        setData([...data, { id, content }]);
+      } else {
+        let idx = data.findIndex((i) => i.id === replaceId);
+        let arr = [...data];
+        arr.splice(idx, 1, { id: replaceId, content: userInput });
+        setData(arr);
+      }
     }
     setUserInput("");
     setReplaceId("");

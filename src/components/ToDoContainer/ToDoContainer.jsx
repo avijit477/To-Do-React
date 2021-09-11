@@ -1,9 +1,8 @@
-import React, { Fragment, useState } from "react";
-import Clear from "../Clear/Clear";
-import Heading from "../Heading/Heading";
-import ToForm from "../ToForm/ToForm";
-import ToList from "../ToList/ToList";
+import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import LeftPanel from "../LeftPanel/LeftPanel";
+import RightPanel from "../RightPanel/RightPanel";
+import { Partition } from "./ToDoContainer.style";
 
 const ToDoContainer = () => {
   const [data, setData] = useState([]);
@@ -41,16 +40,17 @@ const ToDoContainer = () => {
     setReplaceId(id);
   };
   return (
-    <Fragment>
-      <Heading text="Grocery Bud" />
-      <ToForm
+    <Partition>
+      <LeftPanel />
+      <RightPanel
         handleChange={handleChange}
         handleSubmit={handleSubmit}
+        handleEdit={handleEdit}
         userInput={userInput}
+        handleDelete={handleDelete}
+        data={data}
       />
-      <ToList data={data} handleDelete={handleDelete} handleEdit={handleEdit} />
-      <Clear />
-    </Fragment>
+    </Partition>
   );
 };
 export default ToDoContainer;

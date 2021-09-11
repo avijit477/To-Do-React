@@ -3,6 +3,7 @@ import Clear from "../Clear/Clear";
 import Heading from "../Heading/Heading";
 import ToForm from "../ToForm/ToForm";
 import ToList from "../ToList/ToList";
+import { Right } from "./RightPanel.style";
 
 const RightPanel = ({
   handleChange,
@@ -13,16 +14,16 @@ const RightPanel = ({
   data,
 }) => {
   return (
-    <Fragment>
-      <Heading text="Grocery Bud" />
+    <Right>
       <ToForm
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         userInput={userInput}
       />
+      {/* <Heading text="Grocery Bud" /> */}
       <ToList data={data} handleDelete={handleDelete} handleEdit={handleEdit} />
       <Clear />
-    </Fragment>
+    </Right>
   );
 };
 

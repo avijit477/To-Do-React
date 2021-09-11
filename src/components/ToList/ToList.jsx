@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
-import ListItem from "./ListItem";
-import { v4 as uuidv4 } from "uuid";
+import ListItem from "../ListItem/ListItem";
 
 const ToList = (props) => {
   return (

@@ -18,7 +18,8 @@ const LeftPanel = () => {
       <PlusIcon onClick={handleVisible}>
         <AiFillPlusCircle fontSize={"30px"} color={"tomato"} />
       </PlusIcon>
-      {visible && colorArray.map((color) => <ColorDots color={color} />)}
+      {visible &&
+        colorArray.map((color, idx) => <ColorDots color={color} key={idx} />)}
     </Left>
   );
 };

@@ -1,8 +1,8 @@
 import React, { Fragment, useState } from "react";
-import Clear from "./Clear";
-import Heading from "./Heading";
-import ToForm from "./ToForm";
-import ToList from "./ToList";
+import Clear from "../Clear/Clear";
+import Heading from "../Heading/Heading";
+import ToForm from "../ToForm/ToForm";
+import ToList from "../ToList/ToList";
 import { v4 as uuidv4 } from "uuid";
 
 const ToDoContainer = () => {

@@ -1,28 +1,13 @@
-import React, { Fragment } from "react";
-import Clear from "../Clear/Clear";
-import Heading from "../Heading/Heading";
+import React from "react";
+import Cards from "../Cards/Cards";
 import ToForm from "../ToForm/ToForm";
-import ToList from "../ToList/ToList";
 import { Right } from "./RightPanel.style";
 
-const RightPanel = ({
-  handleChange,
-  handleSubmit,
-  handleEdit,
-  userInput,
-  handleDelete,
-  data,
-}) => {
+const RightPanel = ({ cards }) => {
   return (
     <Right>
-      <ToForm
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        userInput={userInput}
-      />
-      {/* <Heading text="Grocery Bud" /> */}
-      <ToList data={data} handleDelete={handleDelete} handleEdit={handleEdit} />
-      <Clear />
+      <ToForm />
+      <Cards cards={cards} />
     </Right>
   );
 };

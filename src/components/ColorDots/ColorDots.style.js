@@ -6,4 +6,5 @@ export const ColorDot = styled.div`
   border-radius: 50%;
   background-color: ${(props) => props.color && props.color};
   margin: 5px;
+  cursor: pointer;
 `;

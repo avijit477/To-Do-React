@@ -17,17 +17,15 @@ const ToDoContainer = () => {
     e.preventDefault();
     if (!userInput.length) {
       alert("Cannot accept empty To-Do");
+    } else if (!replaceId.length) {
+      let content = userInput;
+      let id = uuidv4();
+      setData([...data, { id, content }]);
     } else {
-      if (!replaceId.length) {
-        let content = userInput;
-        let id = uuidv4();
-        setData([...data, { id, content }]);
-      } else {
-        let idx = data.findIndex((i) => i.id === replaceId);
-        let arr = [...data];
-        arr.splice(idx, 1, { id: replaceId, content: userInput });
-        setData(arr);
-      }
+      let idx = data.findIndex((i) => i.id === replaceId);
+      let arr = [...data];
+      arr.splice(idx, 1, { id: replaceId, content: userInput });
+      setData(arr);
     }
     setUserInput("");
     setReplaceId("");

@@ -30,7 +30,7 @@ export const BookMarkIcon = styled.div`
   font-size: 18px;
   top: 8px;
   right: 8px;
-  color: gold;
+  color: ${(props) => (props.item.bookmarked ? "gold" : "white")};
   cursor: pointer;
 `;
 

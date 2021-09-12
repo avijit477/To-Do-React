@@ -3,7 +3,7 @@ import { CardInput, CardWrapper, BookMarkIcon, EditIcon } from "./Card.style";
 import { BsBookmarksFill } from "react-icons/bs";
 import { AiFillEdit, AiFillCheckCircle } from "react-icons/ai";
 
-const Card = ({ item }) => {
+const Card = ({ item, bookmarked }) => {
   let [pointer, setPointer] = useState(true);
   const handleSave = () => {
     setPointer(!pointer);
@@ -11,7 +11,10 @@ const Card = ({ item }) => {
 
   return (
     <CardWrapper item={item}>
-      <BookMarkIcon>
+      <BookMarkIcon
+        onClick={() => bookmarked(item.id, item.bookmarked)}
+        item={item}
+      >
         <BsBookmarksFill />
       </BookMarkIcon>
 

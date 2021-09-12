@@ -22,7 +22,7 @@ export const CardInput = styled.textarea`
   color: black;
   font-weight: lighter;
   letter-spacing: 1.1px;
-  pointer-events: ${(props) => (props.pointer ? "visible" : "none")};
+  pointer-events: ${(props) => (props.item.editState ? "none" : "visible")};
 `;
 
 export const BookMarkIcon = styled.div`

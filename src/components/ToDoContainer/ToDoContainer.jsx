@@ -8,10 +8,14 @@ const ToDoContainer = () => {
   const [cards, setCards] = useState(
     JSON.parse(localStorage.getItem("cards")) || []
   );
-  const [bookmark, setBookmak] = useState([]);
   useEffect(() => {
     localStorage.setItem("cards", JSON.stringify(cards));
   }, [cards]);
+  // useEffect(() => {
+  //   cards.forEach((i) => {
+  //     i.editState = true;
+  //   });
+  // }, []);
 
   const handleCard = (color) => {
     let id = uuidv4();
@@ -38,15 +42,26 @@ const ToDoContainer = () => {
     console.log(arr);
     // setBookmak();
   };
-
-  // useEffect(() => {
-  //   console.log(cards);
-  // }, [cards]);
+  const handleSave = (id, status, value) => {
+    let arr = cards.map((i, j) => {
+      if (i.id === id) {
+        return { ...i, editState: !status, content: value };
+      } else {
+        return { ...i };
+      }
+    });
+    setCards(arr);
+    console.log(arr);
+  };
 
   return (
     <Partition>
       <LeftPanel handleCard={handleCard} />
-      <RightPanel cards={cards} bookmarked={bookmarked} />
+      <RightPanel
+        cards={cards}
+        bookmarked={bookmarked}
+        handleSave={handleSave}
+      />
     </Partition>
   );
 };

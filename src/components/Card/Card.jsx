@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CardInput, CardWrapper, BookMarkIcon, EditIcon } from "./Card.style";
 import { BsBookmarksFill } from "react-icons/bs";
 import { AiFillEdit, AiFillCheckCircle } from "react-icons/ai";
 
-const Card = ({ item, bookmarked }) => {
-  let [pointer, setPointer] = useState(true);
-  const handleSave = () => {
-    setPointer(!pointer);
-  };
-
+const Card = ({ item, bookmarked, handleSave }) => {
+  const [content, setContent] = useState(item.content || "");
   return (
     <CardWrapper item={item}>
       <BookMarkIcon
@@ -18,12 +14,20 @@ const Card = ({ item, bookmarked }) => {
         <BsBookmarksFill />
       </BookMarkIcon>
 
-      <CardInput item={item} pointer={pointer} />
+      <CardInput
+        value={content}
+        item={item}
+        onChange={(e) => setContent(e.target.value)}
+      />
       <EditIcon>
-        {pointer ? (
-          <AiFillCheckCircle onClick={handleSave} />
+        {item.editState ? (
+          <AiFillEdit
+            onClick={() => handleSave(item.id, item.editState, content)}
+          />
         ) : (
-          <AiFillEdit onClick={handleSave} />
+          <AiFillCheckCircle
+            onClick={() => handleSave(item.id, item.editState, content)}
+          />
         )}
       </EditIcon>
     </CardWrapper>

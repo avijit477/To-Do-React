@@ -3,19 +3,22 @@ import { v4 as uuidv4 } from "uuid";
 import LeftPanel from "../LeftPanel/LeftPanel";
 import RightPanel from "../RightPanel/RightPanel";
 import { Partition } from "./ToDoContainer.style";
+import Loader from "react-loader-spinner";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const ToDoContainer = () => {
+  const [loader, setLoader] = useState(true);
   const [cards, setCards] = useState(
     JSON.parse(localStorage.getItem("cards")) || []
   );
   useEffect(() => {
     localStorage.setItem("cards", JSON.stringify(cards));
   }, [cards]);
-  // useEffect(() => {
-  //   cards.forEach((i) => {
-  //     i.editState = true;
-  //   });
-  // }, []);
+  useEffect(() => {
+    let arr = cards.map((i) => ({ ...i, editState: true }));
+    setCards(arr);
+    setLoader(false);
+  }, []);
 
   const handleCard = (color) => {
     let id = uuidv4();
@@ -40,7 +43,6 @@ const ToDoContainer = () => {
     });
     setCards(arr);
     console.log(arr);
-    // setBookmak();
   };
   const handleSave = (id, status, value) => {
     let arr = cards.map((i, j) => {
@@ -57,11 +59,21 @@ const ToDoContainer = () => {
   return (
     <Partition>
       <LeftPanel handleCard={handleCard} />
-      <RightPanel
-        cards={cards}
-        bookmarked={bookmarked}
-        handleSave={handleSave}
-      />
+      {loader ? (
+        <Loader
+          type="Circles"
+          color="purple"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+        />
+      ) : (
+        <RightPanel
+          cards={cards}
+          bookmarked={bookmarked}
+          handleSave={handleSave}
+        />
+      )}
     </Partition>
   );
 };

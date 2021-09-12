@@ -3,11 +3,11 @@ import Cards from "../Cards/Cards";
 import ToForm from "../ToForm/ToForm";
 import { Right } from "./RightPanel.style";
 
-const RightPanel = ({ cards }) => {
+const RightPanel = ({ cards, bookmarked }) => {
   return (
     <Right>
       <ToForm />
-      <Cards cards={cards} />
+      <Cards cards={cards} bookmarked={bookmarked} />
     </Right>
   );
 };

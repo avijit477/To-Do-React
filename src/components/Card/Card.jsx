@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { CardInput, CardWrapper, BookMarkIcon, EditIcon } from "./Card.style";
+import React, { useState } from "react";
+import {
+  CardInput,
+  CardWrapper,
+  BookMarkIcon,
+  EditIcon,
+  DeleteIcon,
+} from "./Card.style";
 import { BsBookmarksFill } from "react-icons/bs";
-import { AiFillEdit, AiFillCheckCircle } from "react-icons/ai";
+import { AiFillEdit, AiFillCheckCircle, AiFillDelete } from "react-icons/ai";
 
-const Card = ({ item, bookmarked, handleSave }) => {
+const Card = ({ item, bookmarked, handleSave, handleDelete }) => {
   const [content, setContent] = useState(item.content || "");
   return (
     <CardWrapper item={item}>
@@ -19,6 +25,9 @@ const Card = ({ item, bookmarked, handleSave }) => {
         item={item}
         onChange={(e) => setContent(e.target.value)}
       />
+      <DeleteIcon>
+        <AiFillDelete onClick={() => handleDelete(item.id)} />
+      </DeleteIcon>
       <EditIcon>
         {item.editState ? (
           <AiFillEdit

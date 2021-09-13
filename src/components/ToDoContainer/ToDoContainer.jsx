@@ -7,18 +7,35 @@ import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const ToDoContainer = () => {
+  const [userInput, setUserInput] = useState("");
   const [loader, setLoader] = useState(true);
   const [cards, setCards] = useState(
     JSON.parse(localStorage.getItem("cards")) || []
   );
+  const [showCards, setShowCards] = useState(cards);
   useEffect(() => {
     localStorage.setItem("cards", JSON.stringify(cards));
+    setShowCards(cards);
   }, [cards]);
   useEffect(() => {
     let arr = cards.map((i) => ({ ...i, editState: true }));
     setCards(arr);
     setLoader(false);
   }, []);
+
+  const handleChange = (e) => {
+    setUserInput(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let arr = cards.filter((x) =>
+      x.content.toLowerCase().startsWith(userInput.toLowerCase().trim())
+        ? x
+        : undefined
+    );
+    setShowCards(arr);
+    setUserInput(``);
+  };
 
   const handleCard = (color) => {
     let id = uuidv4();
@@ -42,7 +59,6 @@ const ToDoContainer = () => {
       }
     });
     setCards(arr);
-    console.log(arr);
   };
   const handleSave = (id, status, value) => {
     let arr = cards.map((i, j) => {
@@ -53,7 +69,6 @@ const ToDoContainer = () => {
       }
     });
     setCards(arr);
-    console.log(arr);
   };
 
   return (
@@ -69,9 +84,12 @@ const ToDoContainer = () => {
         />
       ) : (
         <RightPanel
-          cards={cards}
+          cards={showCards}
           bookmarked={bookmarked}
           handleSave={handleSave}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          userInput={userInput}
         />
       )}
     </Partition>

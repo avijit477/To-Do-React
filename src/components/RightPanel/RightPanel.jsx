@@ -10,6 +10,7 @@ const RightPanel = ({
   handleSubmit,
   handleChange,
   userInput,
+  handleDelete,
 }) => {
   return (
     <Right>
@@ -18,7 +19,12 @@ const RightPanel = ({
         handleSubmit={handleSubmit}
         userInput={userInput}
       />
-      <Cards cards={cards} bookmarked={bookmarked} handleSave={handleSave} />
+      <Cards
+        cards={cards}
+        bookmarked={bookmarked}
+        handleSave={handleSave}
+        handleDelete={handleDelete}
+      />
     </Right>
   );
 };

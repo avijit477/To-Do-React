@@ -16,13 +16,15 @@ export const CardInput = styled.textarea`
   display: inline-block;
   border: none;
   outline: none;
-  height: 100%;
-  width: 100%;
+  height: 90%;
+  width: 90%;
   background-color: ${(props) => props.item && props.item.color};
+
   color: black;
   font-weight: lighter;
   letter-spacing: 1.1px;
   pointer-events: ${(props) => (props.item.editState ? "none" : "visible")};
+  resize: none;
 `;
 
 export const BookMarkIcon = styled.div`
@@ -38,6 +40,14 @@ export const EditIcon = styled.div`
   position: absolute;
   font-size: 19px;
   right: 10px;
+  bottom: 10px;
+  color: black;
+  cursor: pointer;
+`;
+export const DeleteIcon = styled.div`
+  position: absolute;
+  font-size: 19px;
+  right: 50px;
   bottom: 10px;
   color: black;
   cursor: pointer;

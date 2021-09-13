@@ -26,13 +26,13 @@ const ToDoContainer = () => {
   const handleChange = (e) => {
     setUserInput(e.target.value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    let arr = cards.filter((x) =>
-      x.content.toLowerCase().startsWith(userInput.toLowerCase().trim())
-        ? x
-        : undefined
-    );
+    let arr = cards.filter((x) => {
+      return x.content.toLowerCase().startsWith(userInput.toLowerCase().trim());
+    });
+
     setShowCards(arr);
     setUserInput(``);
   };
@@ -71,6 +71,11 @@ const ToDoContainer = () => {
     setCards(arr);
   };
 
+  const handleDelete = (id) => {
+    let arr = cards.filter((x) => x.id !== id);
+    setCards(arr);
+  };
+
   return (
     <Partition>
       <LeftPanel handleCard={handleCard} />
@@ -90,6 +95,7 @@ const ToDoContainer = () => {
           handleSubmit={handleSubmit}
           handleChange={handleChange}
           userInput={userInput}
+          handleDelete={handleDelete}
         />
       )}
     </Partition>

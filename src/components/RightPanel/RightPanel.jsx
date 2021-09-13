@@ -3,10 +3,21 @@ import Cards from "../Cards/Cards";
 import ToForm from "../ToForm/ToForm";
 import { Right } from "./RightPanel.style";
 
-const RightPanel = ({ cards, bookmarked, handleSave }) => {
+const RightPanel = ({
+  cards,
+  bookmarked,
+  handleSave,
+  handleSubmit,
+  handleChange,
+  userInput,
+}) => {
   return (
     <Right>
-      <ToForm />
+      <ToForm
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        userInput={userInput}
+      />
       <Cards cards={cards} bookmarked={bookmarked} handleSave={handleSave} />
     </Right>
   );

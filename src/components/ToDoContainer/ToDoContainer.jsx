@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import LeftPanel from "../LeftPanel/LeftPanel";
+
 import RightPanel from "../RightPanel/RightPanel";
+import Spinner from "../Spinner/Spinner";
 import { Partition } from "./ToDoContainer.style";
-import Loader from "react-loader-spinner";
-import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 const ToDoContainer = () => {
   const [userInput, setUserInput] = useState("");
@@ -80,13 +80,7 @@ const ToDoContainer = () => {
     <Partition>
       <LeftPanel handleCard={handleCard} />
       {loader ? (
-        <Loader
-          type="Circles"
-          color="purple"
-          height={100}
-          width={100}
-          timeout={3000} //3 secs
-        />
+        <Spinner type="Oval" color="purple" height={100} width={100} />
       ) : (
         <RightPanel
           cards={showCards}
